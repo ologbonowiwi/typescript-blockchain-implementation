@@ -1,5 +1,5 @@
 {
-  "name": "template-node-ts",
+  "name": "typescript-blockchain-implementation",
   "version": "0.0.0-development",
   "description": "Template project for node.js and Typescript with workflows and semantic releasing",
   "main": "dist/index.js",
@@ -19,12 +19,12 @@
   "author": "Lucas Santos <hello@lsantos.dev>",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/khaosdoctor/template-node-ts/issues"
+    "url": "https://github.com/ologbonowiwi/typescript-blockchain-implementation/issues"
   },
-  "homepage": "https://github.com/khaosdoctor/template-node-ts#readme",
+  "homepage": "https://github.com/ologbonowiwi/typescript-blockchain-implementation#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/khaosdoctor/template-node-ts"
+    "url": "https://github.com/ologbonowiwi/typescript-blockchain-implementation"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.1.0",
