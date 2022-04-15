@@ -16,7 +16,18 @@
     "start:dev": "tsnd --rs ./src/index.ts",
     "semantic-release": "semantic-release"
   },
-  "author": "Lucas Santos <hello@lsantos.dev>",
+  "contributors": [
+    {
+      "email": "wm4tos.777@gmail.com",
+      "name": "Wesley Matos",
+      "url": "https://blog.wmatos.dev"
+    },
+    {
+      "email": "hello@lsantos.dev",
+      "name": "Lucas Santos",
+      "url": "https://info.lsantos.dev"
+    }
+  ],
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/ologbonowiwi/typescript-blockchain-implementation/issues"
