@@ -3,9 +3,12 @@ import { Block, Payload } from "./types";
 
 export class Blockchain {
   #chain: Block[] = []
+  #difficulty: number
   #prefixPow = '0'
 
-  constructor(private readonly difficulty = 4) {
+  constructor(difficulty = 4) {
+    this.#difficulty = difficulty
+
     this.#chain.push(this.#createFirstBlock())
   }
 
