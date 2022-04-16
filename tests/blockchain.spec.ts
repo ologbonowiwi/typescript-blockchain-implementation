@@ -14,21 +14,13 @@ describe('Blockchain', () => {
     expect(blockchain).toBeInstanceOf(Blockchain)
   })
 
-  it('createBlock', () => {
-    const date = new Date()
-
-    jest.spyOn<any, any>(global, 'Date').mockImplementation(() => date)
-
-    const data = 'abcd'
-    expect(blockchain.createBlock(data)).toStrictEqual<Payload>({
-      sequency: (blockchain as any).lastBlock.payload.sequency + 1,
-      data,
-      oldHash: (blockchain as any).hashLastBlock(),
-      timestamp: +new Date()
+  describe('should be defined', () => {
+    it('createBlock', () => {
+      expect(blockchain.createBlock).toBeDefined()
+      expect(blockchain.createBlock).toBeInstanceOf(Function)
     })
-  })
 
-  it('mineBlock', () => {
-     
+    it('mineBlock', () => {
+    })
   })
 })
