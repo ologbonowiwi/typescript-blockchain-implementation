@@ -101,4 +101,19 @@ export class Blockchain {
 
     return this.#chain
   }
+
+  static generate({ difficulty, blocksQuantity }: { difficulty: number, blocksQuantity: number }) {
+    const blockchain = new Blockchain(difficulty)
+    let chain: Block[] = []
+
+    for (let index = 1; index < blocksQuantity; index++) {
+      const block = blockchain.createBlock(`Block ${index}`)
+
+      const minedBlock = blockchain.mineBlock(block)
+
+      chain = blockchain.sendBlock(minedBlock)
+    }
+
+    return chain
+  }
 }

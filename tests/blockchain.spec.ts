@@ -2,13 +2,9 @@ import { Blockchain } from "../src/blockchain"
 import { chance } from "./globals"
 
 describe('Blockchain', () => {
-  let blockchain: Blockchain
-  let blocksQuantity: number
-
-  beforeAll(() => {
-    blocksQuantity = chance.integer({ min: 2 })
-    blockchain = new Blockchain(4)
-  })
+  const blockchain: Blockchain = new Blockchain(4)
+  const blocksQuantity: number = chance.integer({ min: 2, max: 10 })
+  const difficulty = chance.integer({ min: 1, max: 5 })
 
   it('generate a valid instance', () => {
     expect(blockchain).toBeDefined()
@@ -32,8 +28,14 @@ describe('Blockchain', () => {
     })
 
     it('generate', () => {
-      expect(blockchain.generate).toBeDefined()
-      expect(blockchain.generate).toBeInstanceOf(Function)
+      expect(Blockchain.generate).toBeDefined()
+      expect(Blockchain.generate).toBeInstanceOf(Function)
     })
+  })
+
+  it(`should create a blockchain with ${blocksQuantity} blocks`, () => {
+    const chain = Blockchain.generate({ difficulty, blocksQuantity })
+    
+    expect(chain.length).toBe(blocksQuantity)
   })
 })
