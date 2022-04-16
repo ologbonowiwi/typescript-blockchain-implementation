@@ -1,7 +1,5 @@
-import Chance from "chance"
 import { Blockchain } from "../src/blockchain"
-
-const chance = new Chance()
+import { chance } from "./globals"
 
 describe('Blockchain', () => {
   let blockchain: Blockchain
