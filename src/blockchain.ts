@@ -73,4 +73,22 @@ export class Blockchain {
       nonce += 1
     }
   }
+
+  #validateBlock(block: Block): boolean {
+    if (block.payload.oldHash !== this.#hashLastBlock()) {
+      console.error(`Block ${block.payload.sequency} invalid. The right last hash is ${this.#hashLastBlock().slice(0, 12)} and not ${block.payload.oldHash.slice(0, 12)}`)
+
+      return false
+    }
+
+    const hashToValidate = hash(hash(JSON.stringify(block.payload) + block.header.nonce))
+
+    if (!isValidHash({ hash: hashToValidate, difficulty: this.#difficulty, prefix: this.#prefixProofOfWork })) {
+      console.error(`Block ${block.payload.sequency} invalid. Nonce ${block.header.nonce} is invalid and cannot be verified`)
+      
+      return false
+    }
+
+    return true
+  }
 }
