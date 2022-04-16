@@ -1,4 +1,4 @@
-import { hash, isValidHash, isValidHash } from "./helpers";
+import { hash, isValidHash } from "./helpers";
 import { Block, Payload } from "./types";
 
 export class Blockchain {
@@ -90,5 +90,15 @@ export class Blockchain {
     }
 
     return true
+  }
+
+  sendBlock(block: Block): Block[] {
+    if (this.#validateBlock(block)) {
+      this.#chain.push(block)
+
+      console.log(`Block ${block.payload.sequency} was added to blockchain: ${JSON.stringify(block, null, 2)}`)
+    }
+
+    return this.#chain
   }
 }
