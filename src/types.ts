@@ -4,10 +4,10 @@ export interface Header {
 }
 
 export interface Payload<K = any> {
-  sequency: number
+  sequence: number
   timestamp: number
   data: K
-  oldHash: string
+  previousHash: string
 }
 
 export interface Block {

@@ -14,10 +14,10 @@ export class Blockchain {
 
   #createFirstBlock(): Block {
     const payload: Payload = {
-      sequency: 0,
+      sequence: 0,
       timestamp: +new Date(),
       data: 'First block',
-      oldHash: ''
+      previousHash: ''
     }
 
     return {
@@ -39,9 +39,9 @@ export class Blockchain {
 
   createBlock(data: any): Payload {
     return {
-      sequency: this.#lastBlock.payload.sequency + 1,
+      sequence: this.#lastBlock.payload.sequence + 1,
       data,
-      oldHash: this.#hashLastBlock(),
+      previousHash: this.#hashLastBlock(),
       timestamp: +new Date()
     }
   }
@@ -59,7 +59,7 @@ export class Blockchain {
         const reducedHash = hashBlock.slice(0, 12)
         const timeMine = (finish - start) / 1000
 
-        console.log(`Block ${block.sequency} mined in ${timeMine} seconds. Hash ${reducedHash} (${nonce} tries)`)
+        console.log(`Block ${block.sequence} mined in ${timeMine} seconds. Hash ${reducedHash} (${nonce} tries)`)
 
         return {
           header: {
@@ -75,8 +75,8 @@ export class Blockchain {
   }
 
   #validateBlock(block: Block): boolean {
-    if (block.payload.oldHash !== this.#hashLastBlock()) {
-      console.error(`Block ${block.payload.sequency} invalid. The right last hash is ${this.#hashLastBlock().slice(0, 12)} and not ${block.payload.oldHash.slice(0, 12)}`)
+    if (block.payload.previousHash !== this.#hashLastBlock()) {
+      console.error(`Block ${block.payload.sequence} invalid. The right last hash is ${this.#hashLastBlock().slice(0, 12)} and not ${block.payload.previousHash.slice(0, 12)}`)
 
       return false
     }
@@ -84,7 +84,7 @@ export class Blockchain {
     const hashToValidate = hash(hash(JSON.stringify(block.payload)) + block.header.nonce)
 
     if (!isValidHash({ hash: hashToValidate, difficulty: this.#difficulty, prefix: this.#prefixProofOfWork })) {
-      console.error(`Block ${block.payload.sequency} invalid. Nonce ${block.header.nonce} is invalid and cannot be verified`)
+      console.error(`Block ${block.payload.sequence} invalid. Nonce ${block.header.nonce} is invalid and cannot be verified`)
       
       return false
     }
@@ -96,7 +96,7 @@ export class Blockchain {
     if (this.#validateBlock(block)) {
       this.#chain.push(block)
 
-      console.log(`Block ${block.payload.sequency} was added to blockchain: ${JSON.stringify(block, null, 2)}`)
+      console.log(`Block ${block.payload.sequence} was added to blockchain: ${JSON.stringify(block, null, 2)}`)
     }
 
     return this.#chain
