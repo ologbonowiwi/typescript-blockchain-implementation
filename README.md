@@ -9,3 +9,7 @@ Following each development step from the [@khaosdoctor](https://github.com/khaos
 To run the app, with docker installed, run the command `docker-compose up`, and the tests will run showing the logs.
 
 Feel free to change `blocksQuantity` and `difficulty` variables on the [tests/blockchain.spec.ts](https://github.com/ologbonowiwi/typescript-blockchain-implementation/blob/main/tests/blockchain.spec.ts) file to see how system will works :)
+
+## See the tests
+
+You can also see the last test execution, on this [action page](https://github.com/ologbonowiwi/typescript-blockchain-implementation/actions/workflows/lint.yml).
