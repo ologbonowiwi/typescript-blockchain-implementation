@@ -81,7 +81,7 @@ export class Blockchain {
       return false
     }
 
-    const hashToValidate = hash(hash(JSON.stringify(block.payload) + block.header.nonce))
+    const hashToValidate = hash(hash(JSON.stringify(block.payload)) + block.header.nonce)
 
     if (!isValidHash({ hash: hashToValidate, difficulty: this.#difficulty, prefix: this.#prefixProofOfWork })) {
       console.error(`Block ${block.payload.sequency} invalid. Nonce ${block.header.nonce} is invalid and cannot be verified`)
