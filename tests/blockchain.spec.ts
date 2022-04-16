@@ -1,5 +1,4 @@
 import { Blockchain } from "../src/blockchain"
-import { Payload } from "../src/types"
 
 describe('Blockchain', () => {
   let blockchain: Blockchain
