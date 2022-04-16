@@ -48,7 +48,7 @@ export class Blockchain {
 
   mineBlock(block: Payload): Block {
     let nonce = 0
-    let startTime = +new Date()
+    const startTime = +new Date()
 
     while(true) {
       const hashBlock = hash(JSON.stringify(block))
@@ -85,7 +85,7 @@ export class Blockchain {
 
     if (!isHashProofed({ hash: hashToValidate, difficulty: this.#difficulty, prefix: this.#prefixProofOfWork })) {
       console.error(`Block ${block.payload.sequence} invalid. Hash is not proofed, nonce ${block.header.nonce} is invalid`)
-      
+
       return false
     }
 
