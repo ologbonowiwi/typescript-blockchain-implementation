@@ -26,19 +26,19 @@ export class Blockchain {
     }
   }
 
-  private get lastBlock(): Block {
+  get #lastBlock(): Block {
     return this.#chain.at(-1) as Block
   }
 
-  private hashLastBlock(): string {
-    return this.lastBlock.header.hash
+  #hashLastBlock(): string {
+    return this.#lastBlock.header.hash
   }
 
   createBlock(data: any): Payload {
     return {
-      sequency: this.lastBlock.payload.sequency + 1,
+      sequency: this.#lastBlock.payload.sequency + 1,
       data,
-      oldHash: this.hashLastBlock(),
+      oldHash: this.#hashLastBlock(),
       timestamp: +new Date()
     }
   }
