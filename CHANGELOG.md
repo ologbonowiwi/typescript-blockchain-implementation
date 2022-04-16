@@ -1,3 +1,24 @@
+# 1.0.0 (2022-04-16)
+
+
+### Bug Fixes
+
+* concat hash with nonce instead payload with nonce ([94a62a2](https://github.com/ologbonowiwi/typescript-blockchain-implementation/commit/94a62a28b1fd45f104d4146af73c86942e44247a))
+
+
+### Features
+
+* add block types ([8fc6479](https://github.com/ologbonowiwi/typescript-blockchain-implementation/commit/8fc64798d15ac63f19449760644e21b6bfbdd131))
+* add generate method ([e0293f9](https://github.com/ologbonowiwi/typescript-blockchain-implementation/commit/e0293f9c32734bdfcae12d438eae0310d4265272))
+* create blockchain class ([7a60ded](https://github.com/ologbonowiwi/typescript-blockchain-implementation/commit/7a60ded6d05d612b0c51e064028f1ba1f99cde8a))
+* create blockchain private basic methods ([83f3343](https://github.com/ologbonowiwi/typescript-blockchain-implementation/commit/83f3343d38f0e7492abd9535c216d15d4c21cc8e))
+* create helper to generate hash ([7abc7ca](https://github.com/ologbonowiwi/typescript-blockchain-implementation/commit/7abc7ca2061293f1cc754e2e1793ecf4382736ef))
+* create method to send block to chain ([ffba5b0](https://github.com/ologbonowiwi/typescript-blockchain-implementation/commit/ffba5b0b3c26402760eb1a2e41e48c0ce90d8e6e))
+* create method to validate block ([4faecfe](https://github.com/ologbonowiwi/typescript-blockchain-implementation/commit/4faecfebc8c50e5d0a8546779253cb1ecc135e63))
+* implement isValidHash method ([1192400](https://github.com/ologbonowiwi/typescript-blockchain-implementation/commit/1192400bdedbd2a7cd6b1d3f4e8482073ebca5ea))
+* implement method to create new block ([582f047](https://github.com/ologbonowiwi/typescript-blockchain-implementation/commit/582f047d6ba1b8e5547d4895a3b3ebc7b8aa8b98))
+* write mineBlock method ([4f1b7a5](https://github.com/ologbonowiwi/typescript-blockchain-implementation/commit/4f1b7a57dc94173a8f98131a6bd7a1a96a888962))
+
 # 1.0.0 (2022-02-13)
 
 
