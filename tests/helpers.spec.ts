@@ -1,5 +1,5 @@
 import { createHash } from 'crypto'
-import { hash, isValidHash } from '../src/helpers'
+import { hash, isHashProofed } from '../src/helpers'
 import { chance } from './globals'
 
 describe('helpers', () => {
@@ -11,20 +11,20 @@ describe('helpers', () => {
     })
   })
 
-  describe('isValidHash', () => {
+  describe('isHashProofed', () => {
     const prefix = String(chance.integer())
     const quantityOfRepeats = chance.integer({ min: 1, max: 10 })
 
     it('should return true because hash has right quantity of prefix repeats', () => {
       const hash = `${prefix.repeat(quantityOfRepeats)}${chance.hash()}`
 
-      expect(isValidHash({ hash, prefix, difficulty: quantityOfRepeats })).toBe(true)
+      expect(isHashProofed({ hash, prefix, difficulty: quantityOfRepeats })).toBe(true)
     })
 
     it('should return false because hash doesn\'t have the right quantities of repeats', () => {
       const hash = `${prefix.repeat(quantityOfRepeats - 1)}${chance.hash()}`
       
-      expect(isValidHash({ hash, prefix, difficulty: quantityOfRepeats })).toBe(false)
+      expect(isHashProofed({ hash, prefix, difficulty: quantityOfRepeats })).toBe(false)
     })
   })
 })

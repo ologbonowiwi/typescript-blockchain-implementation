@@ -1,4 +1,4 @@
-import { hash, isValidHash } from "./helpers";
+import { hash, isHashProofed } from "./helpers";
 import { Block, Payload } from "./types";
 
 export class Blockchain {
@@ -48,18 +48,18 @@ export class Blockchain {
 
   mineBlock(block: Payload): Block {
     let nonce = 0
-    let start = +new Date()
+    let startTime = +new Date()
 
     while(true) {
       const hashBlock = hash(JSON.stringify(block))
       const hashProofOfWork = hash(hashBlock + nonce)
 
-      if (isValidHash({ hash: hashProofOfWork, difficulty: this.#difficulty, prefix: this.#prefixProofOfWork })) {
-        const finish = +new Date()
-        const reducedHash = hashBlock.slice(0, 12)
-        const timeMine = (finish - start) / 1000
+      if (isHashProofed({ hash: hashProofOfWork, difficulty: this.#difficulty, prefix: this.#prefixProofOfWork })) {
+        const endTime = +new Date()
+        const shortHash = hashBlock.slice(0, 12)
+        const timeMine = (endTime - startTime) / 1000
 
-        console.log(`Block ${block.sequence} mined in ${timeMine} seconds. Hash ${reducedHash} (${nonce} tries)`)
+        console.log(`Block ${block.sequence} mined in ${timeMine} seconds. Hash ${shortHash} (${nonce} tries)`)
 
         return {
           header: {
@@ -74,17 +74,17 @@ export class Blockchain {
     }
   }
 
-  #validateBlock(block: Block): boolean {
+  #verifyBlock(block: Block): boolean {
     if (block.payload.previousHash !== this.#hashLastBlock()) {
-      console.error(`Block ${block.payload.sequence} invalid. The right last hash is ${this.#hashLastBlock().slice(0, 12)} and not ${block.payload.previousHash.slice(0, 12)}`)
+      console.error(`Block ${block.payload.sequence} invalid. The previous hash is ${this.#hashLastBlock().slice(0, 12)} and not ${block.payload.previousHash.slice(0, 12)}`)
 
       return false
     }
 
     const hashToValidate = hash(hash(JSON.stringify(block.payload)) + block.header.nonce)
 
-    if (!isValidHash({ hash: hashToValidate, difficulty: this.#difficulty, prefix: this.#prefixProofOfWork })) {
-      console.error(`Block ${block.payload.sequence} invalid. Nonce ${block.header.nonce} is invalid and cannot be verified`)
+    if (!isHashProofed({ hash: hashToValidate, difficulty: this.#difficulty, prefix: this.#prefixProofOfWork })) {
+      console.error(`Block ${block.payload.sequence} invalid. Hash is not proofed, nonce ${block.header.nonce} is invalid`)
       
       return false
     }
@@ -92,8 +92,8 @@ export class Blockchain {
     return true
   }
 
-  sendBlock(block: Block): Block[] {
-    if (this.#validateBlock(block)) {
+  appendBlock(block: Block): Block[] {
+    if (this.#verifyBlock(block)) {
       this.#chain.push(block)
 
       console.log(`Block ${block.payload.sequence} was added to blockchain: ${JSON.stringify(block, null, 2)}`)
@@ -111,7 +111,7 @@ export class Blockchain {
 
       const minedBlock = blockchain.mineBlock(block)
 
-      chain = blockchain.sendBlock(minedBlock)
+      chain = blockchain.appendBlock(minedBlock)
     }
 
     return chain
