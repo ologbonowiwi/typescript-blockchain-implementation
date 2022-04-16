@@ -31,9 +31,9 @@ describe('Blockchain', () => {
       expect(blockchain.sendBlock).toBeInstanceOf(Function)
     })
 
-    it('generateChain', () => {
-      expect(blockchain.generateChain).toBeDefined()
-      expect(blockchain.generateChain).toBeInstanceOf(Function)
+    it('generate', () => {
+      expect(blockchain.generate).toBeDefined()
+      expect(blockchain.generate).toBeInstanceOf(Function)
     })
   })
 })
