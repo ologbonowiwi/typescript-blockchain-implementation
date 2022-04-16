@@ -33,4 +33,13 @@ export class Blockchain {
   private hashLastBlock(): string {
     return this.lastBlock.header.hash
   }
+
+  createBlock(data: any): Payload {
+    return {
+      sequency: this.lastBlock.payload.sequency + 1,
+      data,
+      oldHash: this.hashLastBlock(),
+      timestamp: +new Date()
+    }
+  }
 }
