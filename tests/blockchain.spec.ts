@@ -1,10 +1,14 @@
+import Chance from "chance"
 import { Blockchain } from "../src/blockchain"
+
+const chance = new Chance()
 
 describe('Blockchain', () => {
   let blockchain: Blockchain
+  let blocksQuantity: number
 
-  beforeEach(() => {
-    jest.clearAllMocks()
+  beforeAll(() => {
+    blocksQuantity = chance.integer({ min: 2 })
     blockchain = new Blockchain(4)
   })
 
