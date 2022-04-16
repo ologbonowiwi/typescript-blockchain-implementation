@@ -16,7 +16,7 @@ export class Blockchain {
     const payload: Payload = {
       sequence: 0,
       timestamp: +new Date(),
-      data: 'First block',
+      data: 'Block 0',
       previousHash: ''
     }
 
