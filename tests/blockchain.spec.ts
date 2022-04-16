@@ -24,5 +24,10 @@ describe('Blockchain', () => {
       expect(blockchain.mineBlock).toBeDefined()
       expect(blockchain.mineBlock).toBeInstanceOf(Function)
     })
+
+    it('sendBlock', () => {
+      expect(blockchain.sendBlock).toBeDefined()
+      expect(blockchain.sendBlock).toBeInstanceOf(Function)
+    })
   })
 })
